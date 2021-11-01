@@ -21,6 +21,8 @@ class TasksController < ApplicationController
   end
 
   def index
+    @tasks=current_user.tasks
+    @my_tasks=Task.where(username: current_user.username)
   end
 
   def show
