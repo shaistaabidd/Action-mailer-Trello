@@ -12,5 +12,18 @@ class UserMailer < ApplicationMailer
 
   end
 
+  def assign_task_email
+    @user_from = params[:user_from]
+    @user_to = params[:user_to]
+    @task=params[:task]
+    mail(
+      from: @user_from.email,
+      to: email_address_with_name(@user_to.email,@user_to.username) ,
+      cc: 'abc@gmail.com',
+      bcc: 'xyz@gmail.com',
+      subject: 'New Assigned Task'
+    )
+  end
+
   
 end

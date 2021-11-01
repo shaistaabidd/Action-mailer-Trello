@@ -8,10 +8,11 @@ class TasksController < ApplicationController
   def create
     @task=Task.new(task_params)
     @task.user_id=current_user.id
-
+    @to=User.find_by(username: @task.username)
 
     if @task.save      
       flash[:notice] = "Task is Assigned Successfully!!!"
+      UserMailer.with(user_to: @to, user_from: current_user, task: @task).assign_task_email.deliver_now
       redirect_to tasks_path
     else
       
