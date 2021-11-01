@@ -1,0 +1,10 @@
+<div class="List new">
+  <h1>Add new List</h1>
+  <%= form_for([@board,@board.lists.build])do |f| %>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    <div class="form-buttons">
+      <%= f.submit("Create List")%>
+    </div>
+  <%end%>
+  <%= link_to 'Back', board_lists_path(@board) %>
+</div>

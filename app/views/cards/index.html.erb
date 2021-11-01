@@ -1,0 +1,36 @@
+<h1>All Cards</h1>
+
+<% if @cards.empty? %>
+  <%= "No Card is Added Yet!!!" %>
+<% else %>
+  
+  <h4>List Name : <%= @cards.first.list.name %></h4>
+  
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Card Name</th>
+        <th scope = "col">Card Status</th>
+        <th scope = "col">Show</th>
+        <th scope = "col">Edit</th>
+        <th scope = "col">Destroy</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= card.name %></td>
+          <td><%= card.status %></td>
+          <td><%= link_to 'Show', board_list_card_path(card.list.board_id, card.list_id, card) %></td>
+          <td><%= link_to 'Edit', edit_board_list_card_path(card.list.board_id, card.list_id, card) %></td>
+          <td><%= link_to 'Destroy', board_list_card_path(card.list.board_id, card.list_id, card), method: :delete %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+<% end %>
+
+<%= link_to "Add Card",new_board_list_card_path , class:"nav-link" %>
