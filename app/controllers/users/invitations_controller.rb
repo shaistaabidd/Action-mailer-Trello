@@ -12,9 +12,12 @@ class Users::InvitationsController < Devise::InvitationsController
   # end
 
 
-  # def update
-  #   super
-  # end
+  def update
+    super
+    if current_user
+      UserMailer.with(user: current_user).welcome_email.deliver_now
+    end
+  end
 
   # def invite_resource
   #   # skip sending emails on invite
