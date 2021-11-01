@@ -1,2 +1,16 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<div class = "Task Update">
+  
+  <h1>Update task</h1>
+  
+  <%= form_for(@task) do |f| %>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Update Task")%>
+    </div>
+  
+  <%end%>
+  
+  <%= link_to 'Back', tasks_path %>
+
+</div>

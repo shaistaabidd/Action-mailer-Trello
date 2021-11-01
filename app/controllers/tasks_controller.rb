@@ -30,7 +30,21 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task=Task.find(params[:id])
   end
+
+
+  def update
+    @task=Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:notice] = "Task updated successfully......"
+      redirect_to tasks_path
+    else
+      flash[:notice] = "Invalid Input, Try Again!!!"
+      render('edit')
+    end
+  end
+
 
   private
 
