@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   
+  # get 'tasks/new'
+  # get 'tasks/index'
+  # get 'tasks/show'
+  # get 'tasks/edit'
+
+  resources :tasks
+
   #get 'cards/index'
   #get 'cards/show'
   #get 'cards/new'
