@@ -1,0 +1,13 @@
+<%=error_messages_for(f.object)%>
+
+<table summary="Tasks for fields">
+  <tr>
+    <th>Select User</th>
+    <td><%= f.select(:username,User.pluck(:username))%></td>
+  </tr>
+   <tr>
+    <th>Task</th>
+    <td><%= f.text_area(:task) %></td>
+  </tr>
+  
+</table>

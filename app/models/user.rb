@@ -2,7 +2,7 @@ class User < ApplicationRecord
   attr_accessor :login
   
   has_many :boards, dependent: :destroy
-  
+  has_many :tasks, dependent: :destroy
 
   validates :username, 
     :presence => true, :uniqueness => true
