@@ -2,6 +2,8 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def new
+    @users_list =User.where.not(username: nil).pluck(:username)
+    #@a=User.pluck(:username)
     @task=Task.new
   end
 
@@ -32,6 +34,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @users_list =User.where.not(username: nil).pluck(:username)
     @task=Task.find(params[:id])
   end
 

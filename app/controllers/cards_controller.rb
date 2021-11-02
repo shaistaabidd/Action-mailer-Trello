@@ -8,7 +8,9 @@ class CardsController < ApplicationController
   
   def index
     #@cards = Card.where(list_id: @list.id)
-    @cards = @list.cards.order("updated_at DESC")
+    #@cards = @list.cards.order("updated_at DESC")
+    @tasks=@list.cards
+    @my_tasks=Card.where(username: current_user.username)
   end
 
   def show
@@ -18,6 +20,7 @@ class CardsController < ApplicationController
   def new
     #@board=@list.board
     #@board = Board.find(params[:board_id])
+    @users_list =User.where.not(username: nil).pluck(:username)
     @card = Card.new
   end
 
@@ -26,9 +29,10 @@ class CardsController < ApplicationController
     #@board=@list.board
     @card = Card.new(card_params)
     @card.list_id = @list.id
-    
+    @to=User.find_by(username: @card.username)
     if @card.save      
       flash[:notice] = "Card created successfully......"
+      UserMailer.with(user_to: @to, user_from: current_user, task: @card).assign_task_email.deliver_now
       redirect_to board_list_cards_path(@card.list.board, @card.list)
     else
       
@@ -39,6 +43,7 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @users_list =User.where.not(username: nil).pluck(:username)
     #@board=@list.board
   end
 
@@ -75,7 +80,7 @@ class CardsController < ApplicationController
     end
     
     def card_params
-      params.required(:card).permit(:name,:status)
+      params.required(:card).permit(:name,:status,:username)
       
     end
 end

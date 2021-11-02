@@ -1,36 +1,61 @@
-<h1>All Cards</h1>
+<h1>List of Assigned to Tasks : </h1>
 
-<% if @cards.empty? %>
-  <%= "No Card is Added Yet!!!" %>
+<% if @tasks.empty? %>
+  <%= "No Task is Assigned Yet!!!" %>
 <% else %>
-  
-  <h4>List Name : <%= @cards.first.list.name %></h4>
-  
+   
   <table class = "table table-secondary">
     
     <thead>
       <tr>
-        <th scope = "col">Card Name</th>
-        <th scope = "col">Card Status</th>
+        <th scope = "col">Assigned to</th>
+        <th scope = "col">Task</th>
         <th scope = "col">Show</th>
         <th scope = "col">Edit</th>
         <th scope = "col">Destroy</th>
+        
       </tr>
     </thead>
     
     <tbody>
-      <% @cards.each do |card| %>
+      <% @tasks.each do |task| %>
         <tr>
-          <td><%= card.name %></td>
-          <td><%= card.status %></td>
-          <td><%= link_to 'Show', board_list_card_path(card.list.board_id, card.list_id, card) %></td>
-          <td><%= link_to 'Edit', edit_board_list_card_path(card.list.board_id, card.list_id, card) %></td>
-          <td><%= link_to 'Destroy', board_list_card_path(card.list.board_id, card.list_id, card), method: :delete %></td>
+          <td><%= task.username %></td>
+          <td><%= task.name %></td>
+          <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
+          <td><%= link_to 'Edit', edit_board_list_card_path(task.list.board_id, task.list_id, task) %></td>
+          <td><%= link_to 'Destroy', board_list_card_path(task.list.board_id, task.list_id, task), method: :delete,data: { confirm: "Are you sure?" } %></td>     
         </tr>  
       <% end %>
     </tbody>
   
   </table>
 <% end %>
+
+<h1>List of Assigned by Tasks : </h1>
+
+   
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Assigned by</th>
+        <th scope = "col">Task</th>
+        <th scope = "col">Show</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @my_tasks.each do |task| %>
+        <tr>
+          <td><%= task.username %></td>
+          <td><%= task.task %></td>
+          <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+
 
 <%= link_to "Add Card",new_board_list_card_path , class:"nav-link" %>

@@ -1,9 +1,9 @@
 <%=error_messages_for(f.object)%>
-
+<%=%>
 <table summary="Tasks for fields">
   <tr>
     <th>Select User</th>
-    <td><%= f.select(:username,User.pluck(:username))%></td>
+    <td><%= f.select(:username,@users_list)%></td>
   </tr>
    <tr>
     <th>Task</th>

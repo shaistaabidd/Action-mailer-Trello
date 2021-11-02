@@ -1,9 +1,13 @@
 <%= error_messages_for(f.object) %>
 
 <table summary = "Cards for fields">
-  
   <tr>
-    <th>Card Name</th>
+    <th>Select User</th>
+    <td><%= f.select(:username,@users_list)%></td>
+  </tr>
+
+  <tr>
+    <th>Task Name</th>
     <td><%= f.text_area(:name) %></td>
   </tr>
   
