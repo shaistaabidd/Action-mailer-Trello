@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  
+    
   before_action :set_card, only: %i[ show edit update delete destroy ]
   before_action :authenticate_user!
   before_action :get_list
@@ -76,5 +76,6 @@ class CardsController < ApplicationController
     
     def card_params
       params.required(:card).permit(:name,:status)
+      
     end
 end

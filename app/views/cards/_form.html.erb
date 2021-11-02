@@ -9,7 +9,7 @@
   
   <tr>
     <th>Card Status</th>
-    <td><%= f.text_area(:status) %></td>
+    <td><%= f.select(:status,Card.statuses.keys ) %></td>
   </tr>      
 
 </table>
