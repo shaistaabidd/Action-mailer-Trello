@@ -80,7 +80,7 @@ class CardsController < ApplicationController
     end
     
     def card_params
-      params.required(:card).permit(:name,:status,:username)
+      params.required(:card).permit(:name,:status,:username, :deadline)
       
     end
 end

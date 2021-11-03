@@ -49,7 +49,7 @@
       <% @my_tasks.each do |task| %>
         <tr>
           <td><%= task.username %></td>
-          <td><%= task.task %></td>
+          <td><%= task.name %></td>
           <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
         </tr>  
       <% end %>
