@@ -33,6 +33,8 @@ class CardsController < ApplicationController
     if @card.save      
       flash[:notice] = "Card created successfully......"
       UserMailer.with(user_to: @to, user_from: current_user, task: @card).assign_task_email.deliver_now
+      CardJob.set(wait_until: (@card.deadline.strftime("  %M").to_i-Time.now.strftime("  %M").to_i).minutes.from_now).perform_later(@card)
+      
       #UserMailer.with(user_to: @to, user_from: current_user, task: @card).assign_task_email.deliver_later(wait_until: 1.minute.from_now)
       redirect_to board_list_cards_path(@card.list.board, @card.list)
     else
