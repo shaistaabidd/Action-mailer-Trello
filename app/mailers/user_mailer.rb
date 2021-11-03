@@ -24,6 +24,18 @@ class UserMailer < ApplicationMailer
       subject: 'New Assigned Task'
     )
   end
+  
+  def reminder
+    mail(
+      from: 'abc@gmail.com',
+      to: 'abc@gmail.com',
+      cc: 'abc@gmail.com',
+      bcc: 'xyz@gmail.com',
+      subject: 'New Assigned Task'
+    )
+
+
+  end
 
   
 end
