@@ -3,7 +3,7 @@
 <table summary = "Cards for fields">
   <tr>
     <th>Select User</th>
-    <td><%= f.select(:username,@users_list)%></td>
+    <td><%= f.select(:username,Card.get_user_names)%></td>
   </tr>
 
   <tr>

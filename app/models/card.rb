@@ -13,9 +13,26 @@ class Card < ApplicationRecord
            
   after_save_commit do
     if deadline_previously_changed?
-      # CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
-      CardJob.set(wait_until: (self.deadline.strftime("  %M").to_i-Time.now.strftime("  %M").to_i).minutes.from_now).perform_later(self)
+      if self.status=="New" || self.status=="Pending" # CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
+        
+        deadline_date=((self.deadline.strftime(" %a, %d %b %Y").to_date-Time.now.strftime(" %a, %d %b %Y").to_date).to_i)-1
+        
+        if deadline_date<-1
+          UserMailer.over_due(User.find_by(username:self.username),self.list.board.user,self).deliver_now
+          
+        else
+          
+          if deadline_date == -1
+            deadline_date=0           
+          end
+          
+          CardJob.set(wait_until: deadline_date.days.from_now).perform_later(User.find_by(username:self.username),self.list.board.user,self)
+        end
+      end
       
     end
+  end
+  def self.get_user_names
+    User.where.not(username: nil).pluck(:username)
   end
 end

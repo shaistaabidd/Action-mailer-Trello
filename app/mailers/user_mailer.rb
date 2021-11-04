@@ -25,17 +25,33 @@ class UserMailer < ApplicationMailer
     )
   end
   
-  def reminder
+  def reminder(to,from,card)
+    @to=to
+    @from=from
+    @card=card
     mail(
-      from: 'abc@gmail.com',
-      to: 'abc@gmail.com',
+      from: from.email,
+      to: email_address_with_name(to.email,to.username) ,
       cc: 'abc@gmail.com',
       bcc: 'xyz@gmail.com',
-      subject: 'New Assigned Task'
+      subject: 'Deadline Notification'
     )
 
 
   end
 
+
+  def over_due(to,from,card)
+    @to=to
+    @from=from
+    @card=card
+    mail(
+      from: from.email,
+      to: email_address_with_name(to.email,to.username) ,
+      cc: 'abc@gmail.com',
+      bcc: 'xyz@gmail.com',
+      subject: 'Over Due Date'
+    )       
+  end
   
 end

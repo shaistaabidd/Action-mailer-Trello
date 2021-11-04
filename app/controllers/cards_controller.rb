@@ -20,7 +20,7 @@ class CardsController < ApplicationController
   def new
     #@board=@list.board
     #@board = Board.find(params[:board_id])
-    @users_list =User.where.not(username: nil).pluck(:username)
+    #@users_list =User.where.not(username: nil).pluck(:username)
     @card = Card.new
   end
 
