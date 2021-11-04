@@ -11,9 +11,11 @@ class Card < ApplicationRecord
   
 
            
-  # after_save_commit do
-  #   if deadline_previously_changed?
-  #     CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
-  #   end
-  # end
+  after_save_commit do
+    if deadline_previously_changed?
+      # CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
+      CardJob.set(wait_until: (self.deadline.strftime("  %M").to_i-Time.now.strftime("  %M").to_i).minutes.from_now).perform_later(self)
+      
+    end
+  end
 end
