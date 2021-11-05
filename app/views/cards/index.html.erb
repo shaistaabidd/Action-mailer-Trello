@@ -21,7 +21,13 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.username %></td>
-          <td><%= task.name %></td>
+          <td>
+            <%= task.name %>
+            <% if not task.tag_list.empty? %>    
+              <br />
+              Tags: <%= raw task.tag_list.map {|t|  link_to t, filter_board_list_card_path(task.list.board_id, task.list_id, t)}.join(', ') %>
+            <%end%>
+          </td>
           <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
           <td><%= link_to 'Edit', edit_board_list_card_path(task.list.board_id, task.list_id, task) %></td>
           <td><%= link_to 'Destroy', board_list_card_path(task.list.board_id, task.list_id, task), method: :delete,data: { confirm: "Are you sure?" } %></td>     

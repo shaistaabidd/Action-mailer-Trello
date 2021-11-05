@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  
   # get 'tasks/new'
   # get 'tasks/index'
   # get 'tasks/show'
   # get 'tasks/edit'
-
+  #get 'cards/filter'
   resources :tasks
 
   #get 'cards/index'
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
       resources :cards do
         member do
           get :delete
+          get :filter
         end
       end
 

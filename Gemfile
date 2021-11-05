@@ -63,3 +63,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise_invitable', '~> 2.0.0'
 
 gem "sidekiq", "~> 6.2"
+
+gem 'acts-as-taggable-on'

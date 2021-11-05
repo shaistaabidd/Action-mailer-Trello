@@ -13,9 +13,12 @@ class CardsController < ApplicationController
     @my_tasks=Card.where(username: current_user.username)
   end
 
-  def show
-        
+  def filter
+    @searched_tag=@list.cards.tagged_with(params[:id])
+    
   end
+  
+  
 
   def new
     #@board=@list.board
@@ -83,7 +86,7 @@ class CardsController < ApplicationController
     end
     
     def card_params
-      params.required(:card).permit(:name,:status,:username, :deadline)
+      params.required(:card).permit(:name,:status,:username, :deadline, :tag_list)
       
     end
 end

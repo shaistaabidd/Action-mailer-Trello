@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :list
-  
-  
+  #acts_as_taggable  
+  acts_as_taggable#_on #:tags
   enum status: {New: 0, Pending: 1, Complete: 2}
   
   validates :status, inclusion: { in: statuses.keys }
@@ -23,7 +23,9 @@ class Card < ApplicationRecord
         else
           
           if deadline_date == -1
-            deadline_date=0           
+            #deadline_date=0 
+            UserMailer.reminder(User.find_by(username:self.username),self.list.board.user,self).deliver_now
+                    
           end
           
           CardJob.set(wait_until: deadline_date.days.from_now).perform_later(User.find_by(username:self.username),self.list.board.user,self)
