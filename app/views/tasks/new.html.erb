@@ -1,0 +1,14 @@
+<div class = "Task new">
+  <h1>Assign Task</h1>
+  <%= form_for(@task) do |f| %>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Assign")%>
+    </div>
+  
+  <%end%>
+  
+  
+
+</div>

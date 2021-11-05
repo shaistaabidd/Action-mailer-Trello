@@ -1,0 +1,16 @@
+<div class = "Card Update">
+  
+  <h1>Update Card</h1>
+  
+  <%= form_for([@board, @list, @card]) do |f| %>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Update Card")%>
+    </div>
+  
+  <%end%>
+  
+  <%= link_to 'Back', board_list_cards_path(@list) %>
+
+</div>
