@@ -12,31 +12,31 @@ class Card < ApplicationRecord
 
            
   after_save_commit do
-    if deadline_previously_changed?
-      a=CardJob.set(wait_until: deadline).perform_later(User.find_by(username:self.username),self.list.board.user,self)
-      
-    end
     # if deadline_previously_changed?
-    #   if self.status=="New" || self.status=="Pending" # CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
-        
-    #     remaining_days=((self.deadline.strftime(" %a, %d %b %Y").to_date-Time.now.strftime(" %a, %d %b %Y").to_date).to_i)-1
-    #     #remaining_days=self.deadline-1.day
-    #     if remaining_days<-1
-    #       UserMailer.over_due(User.find_by(username:self.username),self.list.board.user,self).deliver_now
-          
-    #     else 
-    #       if remaining_days == -1
-    #         remaining_days=0 
-    #         #UserMailer.reminder(User.find_by(username:self.username),self.list.board.user,self).deliver_now
-                    
-    #       end
-          
-    #       CardJob.set(wait_until: remaining_days.days.from_now).perform_later(User.find_by(username:self.username),self.list.board.user,self,remaining_days.days.from_now)
-          
-    #     end
-    #   end
+    #   a=CardJob.set(wait_until: deadline).perform_later(User.find_by(username:self.username),self.list.board.user,self)
       
     # end
+    if deadline_previously_changed?
+      if self.status=="New" || self.status=="Pending" # CardJob.set(wait_until: 2.minute.from_now).perform_later(self)
+        
+        remaining_days=((self.deadline.strftime(" %a, %d %b %Y").to_date-Time.now.strftime(" %a, %d %b %Y").to_date).to_i)-1
+        #remaining_days=self.deadline-1.day
+        if remaining_days<-1
+          UserMailer.over_due(User.find_by(username:self.username),self.list.board.user,self).deliver_now
+          
+        else 
+          if remaining_days == -1
+            remaining_days=0 
+            #UserMailer.reminder(User.find_by(username:self.username),self.list.board.user,self).deliver_now
+                    
+          end
+          
+          CardJob.set(wait_until: remaining_days.days.from_now).perform_later(User.find_by(username:self.username),self.list.board.user,self,remaining_days.days.from_now)
+          
+        end
+      end
+      
+    end
   end
 
   def mail_sent?
