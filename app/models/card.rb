@@ -21,7 +21,6 @@ class Card < ApplicationRecord
         
         remaining_days=((self.deadline.strftime(" %a, %d %b %Y").to_date-Time.now.strftime(" %a, %d %b %Y").to_date).to_i)-1
         #remaining_days=self.deadline-1.day
-        nshghgh
         if remaining_days<-1
           UserMailer.over_due(User.find_by(username:self.username),self.list.board.user,self).deliver_now
           
