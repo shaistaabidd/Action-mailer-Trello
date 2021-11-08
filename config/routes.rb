@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get 'tasks/edit'
   #get 'cards/filter'
   resources :tasks
-  resources :comments
+  # resources :comments
   #get 'cards/index'
   #get 'cards/show'
   #get 'cards/new'
@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   resources :boards do
     resources :lists do
       resources :cards do
+        resources :comments
         member do
           get :delete
           get :filter
+          
         end
       end
 
