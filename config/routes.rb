@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-  get 'comments/new'
-  get 'comments/show'
-  get 'comments/edit'
+  # get 'comments/index'
+  # get 'comments/new'
+  # get 'comments/show'
+  # get 'comments/edit'
   require 'sidekiq/web'
   mount Sidekiq::Web => "/sidekiq"
   # get 'tasks/new'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get 'tasks/edit'
   #get 'cards/filter'
   resources :tasks
-
+  resources :comments
   #get 'cards/index'
   #get 'cards/show'
   #get 'cards/new'

@@ -1,2 +1,13 @@
-<h1>Comments#new</h1>
-<p>Find me in app/views/comments/new.html.erb</p>
+<div class = "Comment new">
+  <h1>Add new Comment</h1>
+  <%= form_for(@comment) do |f| %>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Create Comment")%>
+    </div>
+  
+  <%end%>
+  
+  
+</div>
