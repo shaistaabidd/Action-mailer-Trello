@@ -22,7 +22,7 @@
       <td><%= @card.updated_at %></td>
     </tr>
   </tbody>
-  <%= link_to 'Add comment',  new_board_list_card_comment_path %>
+  <%= link_to 'Add comment',  new_board_list_card_comment_path(:card_id => @card.id) %>
 
   <br />
   <%= link_to 'Back', board_list_cards_path %>

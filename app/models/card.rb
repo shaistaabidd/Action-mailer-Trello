@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :list
+  has_many :comments, dependent: :destroy
   #acts_as_taggable  
   acts_as_taggable#_on #:tags
   enum status: {New: 0, Pending: 1, Complete: 2}
