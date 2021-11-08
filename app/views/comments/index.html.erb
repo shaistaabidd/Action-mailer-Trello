@@ -2,7 +2,8 @@
 <% @comments.each do |comment| %>
     
   <p><%= comment.text %></p>
-             
+  <%= link_to 'Edit', edit_comment_path(comment) %></td>
+                     
 <% end %>
     
 <%= link_to "Add Comment",new_comment_path , class:"nav-link" %>      
