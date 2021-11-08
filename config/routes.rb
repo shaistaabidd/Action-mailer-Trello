@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+  get 'comments/new'
+  get 'comments/show'
+  get 'comments/edit'
   require 'sidekiq/web'
   mount Sidekiq::Web => "/sidekiq"
   # get 'tasks/new'
