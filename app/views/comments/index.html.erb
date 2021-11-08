@@ -3,7 +3,8 @@
     
   <p><%= comment.text %></p>
   <%= link_to 'Edit', edit_comment_path(comment) %></td>
-                     
+  <%= link_to 'Destroy', comment_path(comment), method: :delete,data: { confirm: "Are you sure?" } %>     
+                        
 <% end %>
     
 <%= link_to "Add Comment",new_comment_path , class:"nav-link" %>      
