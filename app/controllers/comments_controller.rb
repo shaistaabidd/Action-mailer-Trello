@@ -12,9 +12,6 @@ class CommentsController < ApplicationController
   end
 
   def new
-    #@board=List.find(params[:list_id]).board
-    #@board = Board.find(params[:board_id])
-    #@users_list =User.where.not(username: nil).pluck(:username)
     
     @comment=Comment.new
     
