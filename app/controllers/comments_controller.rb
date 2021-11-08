@@ -23,6 +23,15 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment=Comment.find(params[:id])
+
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment updated successfully......"
+      redirect_to comments_path
+    else
+      flash[:notice] = "Invalid Comment!!!"
+      render('edit')
+    end
   end
 end
 
