@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #get 'cards/show'
   #get 'cards/new'
   #get 'cards/edit'
+  get 'home/index'
   resources :boards do
     resources :lists do
       resources :cards do
