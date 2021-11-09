@@ -40,34 +40,6 @@
   </table>
 <% end %>
 
-<h1>List of tasks assigned to me : </h1>
-
-   
-  <table class = "table table-secondary">
-    
-    <thead>
-      <tr>
-        <th scope = "col">Assigned by</th>
-        <th scope = "col">Assigned to</th>
-        <th scope = "col">List</th>
-        <th scope = "col">Task</th>
-        <th scope = "col">Show</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <% @my_tasks.each do |task| %>
-        <tr>
-          <td><%= task.list.board.user.username %></td>
-          <td><%= task.username %></td>
-          <td><%= task.list_id %></td>
-          <td><%= task.name %></td>
-          <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
-        </tr>  
-      <% end %>
-    </tbody>
-  
-  </table>
 
 
 <%= link_to "Add Card",new_board_list_card_path , class:"nav-link" %>
