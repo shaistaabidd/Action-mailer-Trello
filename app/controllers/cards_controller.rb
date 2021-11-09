@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   before_action :get_list
   before_action :get_board
   load_and_authorize_resource :board
-  
+  #load_and_authorize_resource 
   def index
     #@cards = Card.where(list_id: @list.id)
     #@cards = @list.cards.order("updated_at DESC")
@@ -18,7 +18,8 @@ class CardsController < ApplicationController
     
   end
   
-  
+  def show
+  end
 
   def new
     #@board=@list.board

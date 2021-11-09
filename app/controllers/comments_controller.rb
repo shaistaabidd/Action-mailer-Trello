@@ -5,10 +5,13 @@ class CommentsController < ApplicationController
   before_action :get_list
   before_action :get_board
   
-  load_and_authorize_resource :board
+  #load_and_authorize_resource :board
 
   def index
-    @comments=Comment.all.order("updated_at DESC")
+    #@comments=Comment.all.order("updated_at DESC")
+    @comments=@card.comments.order("updated_at DESC")
+    @other_user=Comment.where(user_name: @card.username)
+    
   end
 
   def new
@@ -20,7 +23,7 @@ class CommentsController < ApplicationController
   def create
     @comment=Comment.new(comment_params)
     @comment.card_id=@card.id
-    @comment.user_id=current_user.id
+    @comment.user_name=current_user.username
     if @comment.save
       flash[:notice] = "Comment Added successfully......"
       redirect_to board_list_card_comments_path

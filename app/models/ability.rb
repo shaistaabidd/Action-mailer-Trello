@@ -6,6 +6,15 @@ class Ability
   def initialize(user)
     can :manage, Board, user_id: user.id
     can :manage, Task, user_id: user.id
+    can :create, Card, username: user.username
+    can :update, Card, username: user.username
+    can :destroy, Card, username: user.username
+    can :show, Card do |s|
+      s.username == "shaista" || s.username == "komal"   
+    end
+    
+    #can :manage, Card, username: user.username
+    #can :show, Card
     #can :manage, List, :board => { :user_id => user.id }
     
     # Define abilities for the passed in user here. For example:
