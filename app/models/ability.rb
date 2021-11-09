@@ -6,12 +6,37 @@ class Ability
   def initialize(user)
     can :manage, Board, user_id: user.id
     can :manage, Task, user_id: user.id
-    can :create, Card, username: user.username
-    can :update, Card, username: user.username
-    can :destroy, Card, username: user.username
-    can :show, Card do |s|
-      s.username == "shaista" || s.username == "komal"   
+    can :manage, List do |list|
+      p "checking list abilities", list
+      list.board.user_id == user.id  
     end
+    can :read, Card do |s|
+      s.username == user.username || s.list.board.user.username==user.username   
+    end
+    can :manage, Card do |s|
+      s.list.board.user.username==user.username   
+    end
+
+    # can :show, Card, username: user.username
+    # can :update, Card, username: user.username
+    # can :destroy, Card, username: user.username
+    
+    # can :read, Card do |s|
+    #   raise "hello1"
+    #   p "checking ability",s.username, user.username
+    #   s.username == user.username   
+    # end
+
+    # can :read, Card do |s|
+    #   raise "hello2"
+
+    #   p "card check", s
+    #   p "checking ability",s.list.board.user_id, user.id
+    #   s.list.board.user_id == user.id   
+    # end
+    
+
+    # can :show, Card, username: user.username
     
     #can :manage, Card, username: user.username
     #can :show, Card

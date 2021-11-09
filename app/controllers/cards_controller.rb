@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_list
   before_action :get_board
-  load_and_authorize_resource :board
+  load_and_authorize_resource :card, :through => :list
   #load_and_authorize_resource 
   def index
     #@cards = Card.where(list_id: @list.id)
@@ -42,6 +42,7 @@ class CardsController < ApplicationController
       #UserMailer.with(user_to: @to, user_from: current_user, task: @card).assign_task_email.deliver_later(wait_until: 1.minute.from_now)
       redirect_to board_list_cards_path(@card.list.board, @card.list)
     else
+      p @card.errors
       
       flash[:notice] = "Invalid Card Name!!!"
       render('new')      

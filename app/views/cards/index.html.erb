@@ -1,4 +1,4 @@
-<h1>List of Assigned to Tasks : </h1>
+<h1>List of tasks assigned by me : </h1>
 
 <% if @tasks.empty? %>
   <%= "No Task is Assigned Yet!!!" %>
@@ -9,6 +9,7 @@
     <thead>
       <tr>
         <th scope = "col">Assigned to</th>
+        <th scope = "col">Created by</th>
         <th scope = "col">Task</th>
         <th scope = "col">Show</th>
         <th scope = "col">Edit</th>
@@ -21,6 +22,7 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.username %></td>
+          <td><%= task.list.board.user.username %></td>
           <td>
             <%= task.name %>
             <% if not task.tag_list.empty? %>    
@@ -38,7 +40,7 @@
   </table>
 <% end %>
 
-<h1>List of Assigned by Tasks : </h1>
+<h1>List of tasks assigned to me : </h1>
 
    
   <table class = "table table-secondary">
@@ -46,6 +48,8 @@
     <thead>
       <tr>
         <th scope = "col">Assigned by</th>
+        <th scope = "col">Assigned to</th>
+        <th scope = "col">List</th>
         <th scope = "col">Task</th>
         <th scope = "col">Show</th>
       </tr>
@@ -55,6 +59,8 @@
       <% @my_tasks.each do |task| %>
         <tr>
           <td><%= task.list.board.user.username %></td>
+          <td><%= task.username %></td>
+          <td><%= task.list_id %></td>
           <td><%= task.name %></td>
           <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
         </tr>  

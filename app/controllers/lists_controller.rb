@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: %i[ show edit update delete destroy ]
   before_action :authenticate_user!
   before_action :get_board
-  load_and_authorize_resource :board
+  authorize_resource
   #load_and_authorize_resource :list, :through => :board 
   
   def index
@@ -16,7 +16,9 @@ class ListsController < ApplicationController
   end
 
   def new
+    
     @list = List.new
+    #raise "hello"
   end
 
   def create
