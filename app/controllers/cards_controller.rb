@@ -10,7 +10,7 @@ class CardsController < ApplicationController
     #@cards = Card.where(list_id: @list.id)
     #@cards = @list.cards.order("updated_at DESC")
     @tasks=@list.cards
-    @my_tasks=Card.where(username: current_user.username)
+    #@my_tasks=Card.where(username: current_user.username)
   end
 
   def filter
