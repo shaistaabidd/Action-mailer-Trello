@@ -16,7 +16,18 @@ class Ability
     can :manage, Card do |s|
       s.list.board.user.username==user.username   
     end
-
+    can :read, :create, Comment do |s|
+      s.card.list.board.user.username==user.username || s.user_name == user.username  
+    end
+    # can :create, Comment do |s|
+    #   s.card.list.board.user.username==user.username || s.user_name == user.username  
+    # end
+    can :edit, :delete, Comment do |s|
+      s.user_name==user.username  
+    end
+    # can :delete, Comment do |s|
+    #   s.user_name==user.username    
+    # end
     # can :show, Card, username: user.username
     # can :update, Card, username: user.username
     # can :destroy, Card, username: user.username

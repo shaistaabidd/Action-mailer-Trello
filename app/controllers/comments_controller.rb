@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   before_action :get_board
   
   #load_and_authorize_resource :board
-
+  authorize_resource 
   def index
     #@comments=Comment.all.order("updated_at DESC")
     @comments=@card.comments.order("updated_at DESC")
