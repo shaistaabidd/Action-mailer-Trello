@@ -51,7 +51,11 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    authenticated :user do
+    authenticated :user, lambda { |user| user.has_role? :admin} do
+      root 'home#index', as: :admin_root
+    end
+    authenticated :user, lambda { |user| user.has_role? :user} do
+    # Ex:- scope :active, lambda {where(:active => true)} do
       root 'boards#index', as: :root
     end
     unauthenticated do
