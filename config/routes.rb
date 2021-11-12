@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # get 'tasks/edit'
   #get 'cards/filter'
   resources :tasks
-  get 'admin/reset_password'
-  patch 'admin/create'
+  get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'
+  #get 'admin/reset_password'
+  patch 'admin/create/:id', to: 'admin#create', as: 'admin_create'
   # get 'admin/deactivate'
   # get 'admin/activate'
   get 'admin/deactivate/:id', to: 'admin#deactivate', as: 'admin_deactivate'

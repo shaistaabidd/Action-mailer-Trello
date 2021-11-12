@@ -11,8 +11,7 @@ class AdminController < ApplicationController
 
   def create
     @user=User.find(params[:id])
-    p=params.required(:user).permit(:encrypted_password)
-    a=BCrypt::Password.create(p[:encrypted_password])
+    a=BCrypt::Password.create(params[:user][:password])
     if @user.update(encrypted_password: a)
       flash[:notice] = "Password updated successfully......"
       redirect_to admin_index_path
