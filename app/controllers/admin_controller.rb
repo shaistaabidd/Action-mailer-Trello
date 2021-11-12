@@ -9,7 +9,7 @@ class AdminController < ApplicationController
     @user=User.find(params[:id])
   end
 
-  def create
+  def change
     @user=User.find(params[:id])
     a=BCrypt::Password.create(params[:user][:password])
     if @user.update(encrypted_password: a)
