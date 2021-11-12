@@ -6,13 +6,13 @@ class AdminController < ApplicationController
   end
 
   def reset_password
-    @user=User.find(params[:id])
+    @user=""
   end
 
   def change
     @user=User.find(params[:id])
-    a=BCrypt::Password.create(params[:user][:password])
-    if @user.update(encrypted_password: a)
+    password=BCrypt::Password.create(params[:password])
+    if @user.update(encrypted_password: password)
       flash[:notice] = "Password updated successfully......"
       redirect_to admin_index_path
     else
