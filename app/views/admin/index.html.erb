@@ -11,6 +11,7 @@
         <th scope="col">Email</th>
         <th scope="col">Total Boards</th>
         <th scope="col">Reset Password</th>
+        <th scope="col">Activate/Deactivate Account</th>
         
       </tr>
     </thead>
@@ -18,7 +19,6 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= user.encrypted_password %></td>
           <td><%= user.username %></td>
           <td><%= user.email %></td>
           <td><%= user.boards.count %></td>
