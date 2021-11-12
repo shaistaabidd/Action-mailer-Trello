@@ -22,15 +22,11 @@ class AdminController < ApplicationController
 
   def activate
     @user=User.find(params[:id])
-    @user.update(deactivated:false)
+    @user.deactivated? ? @user.update(deactivated:false) : @user.update(deactivated:true)
+    #@user.update(deactivated:false)
     redirect_to admin_index_path
   end
 
-  def deactivate
-    @user=User.find(params[:id])
-    @user.update(deactivated:true)
-    redirect_to admin_index_path
-  end
 
   private
 

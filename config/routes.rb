@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   patch 'admin/change/:id', to: 'admin#change', as: 'admin_change'
   # get 'admin/deactivate'
   # get 'admin/activate'
-  get 'admin/deactivate/:id', to: 'admin#deactivate', as: 'admin_deactivate'
   get 'admin/activate/:id', to: 'admin#activate', as: 'admin_activate'
   # resources :comments
   #get 'cards/index'
