@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   # get 'tasks/edit'
   #get 'cards/filter'
   resources :tasks
+  get 'admin/reset_password'
+  patch 'admin/create'
+  # get 'admin/deactivate'
+  # get 'admin/activate'
+  get 'admin/deactivate/:id', to: 'admin#deactivate', as: 'admin_deactivate'
+  get 'admin/activate/:id', to: 'admin#activate', as: 'admin_activate'
   # resources :comments
   #get 'cards/index'
   #get 'cards/show'
@@ -51,8 +57,8 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    authenticated :user, lambda { |user| user.has_role? :admin} do
-      root 'home#index', as: :admin_root
+    authenticated :user, ->(u) { u.has_role? :admin } do
+      root 'admin#index', as: :admin_index
     end
     authenticated :user, lambda { |user| user.has_role? :user} do
     # Ex:- scope :active, lambda {where(:active => true)} do

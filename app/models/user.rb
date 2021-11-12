@@ -2,7 +2,7 @@ class User < ApplicationRecord
   rolify
   attr_accessor :login
   after_create :assign_default_role
-
+  #before_commit :set_route
   
   has_many :boards, dependent: :destroy
   has_many :tasks, dependent: :destroy
@@ -26,4 +26,14 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
   end
+  def active_for_authentication?
+    super && !deactivated
+  end
+  # def set_route
+  #   if user.has_role? :admin
+  #     redirect_to admin_index_path #, as: :root
+  #   else
+  #     redirect_to home_index_path
+  #   end
+  # end
 end

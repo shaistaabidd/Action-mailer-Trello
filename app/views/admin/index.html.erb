@@ -1,0 +1,36 @@
+<h1>All Users</h1>
+<% if @users.empty? %>
+  <%= "No User Exists!!!" %>
+<% else %>
+  
+  <table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Total Boards</th>
+        <th scope="col">Reset Password</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.encrypted_password %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.boards.count %></td>
+          <td><%= link_to "Reset Password", admin_reset_password_path(:id => user.id)%></td>
+          <%if user.deactivated%>
+            <td><%= link_to "Activate Account", admin_activate_path(user),  data: { confirm: "Are you sure?" }%></td>
+          <%else%>
+            <td><%= link_to "Deactivate Account", admin_deactivate_path(user), data: { confirm: "Are you sure?" }%></td>
+          <%end%>
+        </tr>  
+      <% end %>
+      
+    </tbody>
+  </table>
+<% end %>
