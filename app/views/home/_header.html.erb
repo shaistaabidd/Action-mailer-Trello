@@ -16,8 +16,13 @@
             <li class = "nav-item">
               <%= link_to "View Users", admin_index_path, class:"nav-link" %>
             </li>
-            
-            
+            <li class = "nav-item">
+              <%= link_to "Plan :#{ current_user.plan}", "#", class:"nav-link" %>
+            </li>
+
+            <li class = "nav-item">
+              <%= link_to "Subscription: #{ current_user.subscription_status}", "#", class:"nav-link" %>
+            </li>
 
             
             
