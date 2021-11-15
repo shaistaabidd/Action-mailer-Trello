@@ -67,3 +67,5 @@ gem "sidekiq", "~> 6.2"
 gem 'acts-as-taggable-on'
 
 gem "rolify"
+
+gem "stripe"
