@@ -11,22 +11,22 @@
       <ul class = "navbar-nav me-auto mb-2 mb-lg-0">
         
         <%if user_signed_in? %>
-          
+          <li class = "nav-item">
+            <%= link_to "Stripe Customer ID :#{ current_user.stripe_customer_id}", "#", class:"nav-link" %>
+          </li>
+          <li class = "nav-item">
+            <%= link_to "Plan :#{ current_user.plan}", "#", class:"nav-link" %>
+          </li>
+
+          <li class = "nav-item">
+            <%= link_to "Subscription: #{ current_user.subscription_status}", "#", class:"nav-link" %>
+          </li>
+
+            
           <%if current_user.has_role? :admin %>
             <li class = "nav-item">
               <%= link_to "View Users", admin_index_path, class:"nav-link" %>
             </li>
-            <li class = "nav-item">
-              <%= link_to "Stripe Customer ID :#{ current_user.stripe_customer_id}", "#", class:"nav-link" %>
-            </li>
-            <li class = "nav-item">
-              <%= link_to "Plan :#{ current_user.plan}", "#", class:"nav-link" %>
-            </li>
-
-            <li class = "nav-item">
-              <%= link_to "Subscription: #{ current_user.subscription_status}", "#", class:"nav-link" %>
-            </li>
-
             
             
           <%end%>
