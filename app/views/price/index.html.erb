@@ -1,0 +1,12 @@
+<h1>Pricing</h1>
+<br />
+<%@pricing=Stripe::Price.list(lookup_keys: ["good year" , "good month"],
+expand: ["data.product"])%>
+<%@pricing.each do |price|%>
+  <%=price.product.name%>
+  <%=price.unit_amount/100%>
+  <%=price.currency%>/
+  <%=price.recurring.interval%>
+  <%= link_to 'Checkout', checkout_path(price: price.id), method: :post, remote: true %></td>
+  <br />
+<%end%>

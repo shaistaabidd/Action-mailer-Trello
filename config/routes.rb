@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # get 'tasks/show'
   # get 'tasks/edit'
   #get 'cards/filter'
+  get 'price', to: 'price#index', as: 'price_index'
+  #post 'checkout', to: 'checkout#create', as: 'checkout'
+
   resources :tasks
   get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'
   #get 'admin/reset_password'

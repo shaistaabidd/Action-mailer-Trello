@@ -14,12 +14,15 @@
           <li class = "nav-item">
             <%= link_to "Stripe Customer ID :#{ current_user.stripe_customer_id}", "#", class:"nav-link" %>
           </li>
+           <li class = "nav-item">
+            <%= link_to "Subscription Pricing", price_index_path, class:"nav-link" %>
+          </li>
           <li class = "nav-item">
             <%= link_to "Plan :#{ current_user.plan}", "#", class:"nav-link" %>
           </li>
 
           <li class = "nav-item">
-            <%= link_to "Subscription: #{ current_user.subscription_status}", "#", class:"nav-link" %>
+            <%= link_to "Current User Subscription: #{ current_user.subscription_status}", "#", class:"nav-link" %>
           </li>
 
             
