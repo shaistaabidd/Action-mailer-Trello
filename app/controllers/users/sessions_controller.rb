@@ -9,14 +9,14 @@ class Users::SessionsController < Devise::SessionsController
   # end
   
   # POST /resource/sign_in
-   def create
-    if User.find_by(username:sign_in_params[:login]).deactivated? 
-      redirect_to  new_user_session_path
-    else
+  #  def create
+  #   if User.find_by(username:sign_in_params[:login]).deactivated? 
+  #     redirect_to  new_user_session_path
+  #   else
 
-      super
-    end
-   end
+  #     super
+  #   end
+  #  end
 
   # DELETE /resource/sign_out
   # def destroy

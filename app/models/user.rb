@@ -26,9 +26,9 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
   end
-  # def active_for_authentication?
-  #   super && !deactivated
-  # end
+  def active_for_authentication?
+    super && !deactivated
+  end
   # def set_route
   #   if user.has_role? :admin
   #     redirect_to admin_index_path #, as: :root
