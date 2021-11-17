@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
   load_and_authorize_resource 
   
   def index
-    if 3.days.from_now>Time.now ||  current_user.subscription_status=="active"
+    if current_user.created_at + 3.days > Time.now ||  current_user.subscription_status=="active"
       @boards = current_user.boards.order("updated_at DESC")
     else
       @boards=current_user.boards.first(3)
