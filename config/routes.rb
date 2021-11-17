@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #get 'cards/filter'
   get 'price', to: 'price#index', as: 'price_index'
   post 'checkout', to: 'checkout#create', as: 'checkout'
+  post 'billing_portal', to: 'billing_portal#create', as: 'billing_portal'
 
   resources :tasks
   get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'

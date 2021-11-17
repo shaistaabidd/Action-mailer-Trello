@@ -14,7 +14,10 @@
           <li class = "nav-item">
             <%= link_to "Stripe Customer ID :#{ current_user.stripe_customer_id}", "#", class:"nav-link" %>
           </li>
-           <li class = "nav-item">
+          <li class = "nav-item">
+            <%= link_to 'Billing Portal', billing_portal_path, class:"nav-link", method: :post %>
+          </li>
+          <li class = "nav-item">
             <%= link_to "Subscription Pricing", price_index_path, class:"nav-link" %>
           </li>
           <li class = "nav-item">
