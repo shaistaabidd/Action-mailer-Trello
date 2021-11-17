@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # get 'admin/deactivate'
   # get 'admin/activate'
   get 'admin/activate/:id', to: 'admin#activate', as: 'admin_activate'
+  resources :webhooks, only: [:create]
   # resources :comments
   #get 'cards/index'
   #get 'cards/show'
