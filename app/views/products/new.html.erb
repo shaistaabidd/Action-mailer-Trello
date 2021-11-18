@@ -1,0 +1,10 @@
+<div class = "Product new">
+  <h1> Add new Product </h1>
+  
+  <%=form_for(@product) do |f| %>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    <div>
+      <%=f.submit("Create Product")%>
+    </div>
+  <%end%>
+</div>
