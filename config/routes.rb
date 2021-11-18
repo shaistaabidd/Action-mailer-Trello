@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'billing_portal', to: 'billing_portal#create', as: 'billing_portal'
 
   resources :tasks
+  resources :products
   get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'
   #get 'admin/reset_password'
   patch 'admin/change/:id', to: 'admin#change', as: 'admin_change'
