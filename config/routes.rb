@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :products
+  resources :prices
   get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'
   #get 'admin/reset_password'
   patch 'admin/change/:id', to: 'admin#change', as: 'admin_change'

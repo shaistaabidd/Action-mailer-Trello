@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+
   def new
     @product=Product.new
   end
@@ -8,7 +9,7 @@ class ProductsController < ApplicationController
     @product=Product.new(product_params)
     if @product.save
       flash[:notice]="Product Saved Successfully!!!"
-      redirect_to products_path
+      redirect_to product_path(@product)
     else
       flash[:notice]="Try Again!!!"
       render('new')
