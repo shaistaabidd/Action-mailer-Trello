@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_072550) do
+ActiveRecord::Schema.define(version: 2021_11_18_093227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2021_11_18_072550) do
     t.integer "board_id"
     t.integer "user_id"
     t.index ["board_id"], name: "index_lists_on_board_id"
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.integer "price"
+    t.string "unit_amount"
+    t.string "currency", default: "usd"
+    t.string "recurring_interval"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
