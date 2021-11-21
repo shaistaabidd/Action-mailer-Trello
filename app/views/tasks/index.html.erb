@@ -1,0 +1,64 @@
+<h1>List of Assigned to Tasks : </h1>
+
+<% if @tasks.empty? %>
+  <%= "No Task is Assigned Yet!!!" %>
+<% else %>
+   
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Assigned to</th>
+        <th scope = "col">Task</th>
+        <th scope = "col">Show</th>
+        <th scope = "col">Edit</th>
+        <th scope = "col">Destroy</th>
+        
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.username %></td>
+          <td><%= task.task %></td>
+          <td><%= link_to 'Show', task_path(task) %></td>
+          <td><%= link_to 'Edit', edit_task_path(task) %></td>
+          <td><%= link_to 'Destroy', task_path(task), 
+          method: :delete,data: { confirm: "Are you sure?" } %></td>
+                 
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+<% end %>
+
+<h1>List of Assigned by Tasks : </h1>
+
+   
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Assigned by</th>
+        <th scope = "col">Task</th>
+        <th scope = "col">Show</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @my_tasks.each do |task| %>
+        <tr>
+          <td><%= task.username %></td>
+          <td><%= task.task %></td>
+          <td><%= link_to 'Show', task_path(task) %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+
+
+
+<%= link_to "Assign Task",new_task_path , class:"nav-link" %>

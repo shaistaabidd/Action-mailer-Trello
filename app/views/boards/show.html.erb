@@ -1,0 +1,24 @@
+<h1>Show Board</h1>
+
+<table class = "table">
+  
+  <thead>
+    <tr>
+      <th scope = "col"> Board Name </th>
+      <th scope = "col"> Created At </th>
+      <th scope = "col"> Updated At </th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <th scope = "row">1</th>
+      <td><%= @board.name %></td>
+      <td><%= @board.created_at %></td>
+      <td><%= @board.updated_at %></td>
+    </tr>
+  </tbody>
+  
+  <%= link_to 'Create List',  new_board_list_path(@board) %>
+
+</table>

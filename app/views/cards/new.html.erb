@@ -1,0 +1,14 @@
+<div class = "Card new">
+  <h1>Add new Card</h1>
+  <%= form_for([@board, @list, @list.cards.build]) do |f| %>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Create Card")%>
+    </div>
+  
+  <%end%>
+  
+  <%= link_to 'Back', board_list_cards_path(@list) %>
+
+</div>

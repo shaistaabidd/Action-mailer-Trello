@@ -1,0 +1,16 @@
+<%if object && object.errors.size > 0 %>
+  <div id = "error-explaination">
+    
+    <h1><%= pluralize(object.errors.size,"error") %> Prohibited
+    this record from being saved!!! </h1>
+    
+    <p> Problem Area: </p>
+    
+    <ul>
+      <%= object.errors.full_messages.each do |msg| %>
+        <li> <%= msg %> </li>
+      <%end%>
+    </ul>
+  
+  </div>
+<%end%>

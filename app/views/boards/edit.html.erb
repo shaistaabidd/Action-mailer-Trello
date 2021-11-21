@@ -1,0 +1,16 @@
+<div class = "board edit">
+  
+  <h1>Edit Board</h1>
+  
+  <%= form_for(@board, :url => board_path(@board), :method => 'patch') do |f| %>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Update Board") %>
+    </div>
+  
+  <% end %>
+  
+  <%= link_to 'Back', boards_path %>
+
+</div>

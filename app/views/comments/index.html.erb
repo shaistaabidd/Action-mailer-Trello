@@ -1,0 +1,12 @@
+<h1>All Comments</h1>
+<% @comments.each do |comment| %>
+    
+  <p><%= comment.text %></p>
+  
+    <%= link_to 'Edit', edit_board_list_card_comment_path(comment.card.list.board_id,comment.card.list_id,comment.card_id,comment) %></td>
+    <br />
+    <%= link_to 'Destroy', board_list_card_comment_path(comment.card.list.board_id,comment.card.list_id,comment.card_id,comment), method: :delete ,data: { confirm: "Are you sure?" }%>
+                        
+<% end %>
+    
+<%= link_to "Add Comment",new_board_list_card_comment_path , class:"nav-link" %>

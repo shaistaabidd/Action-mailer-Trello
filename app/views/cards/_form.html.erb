@@ -1,0 +1,29 @@
+<%= error_messages_for(f.object) %>
+
+<table summary = "Cards for fields">
+  <tr>
+    <th>Select User</th>
+    <td><%= f.select(:username,Card.get_user_names)%></td>
+  </tr>
+
+  <tr>
+    <th>Task Name</th>
+    <td><%= f.text_area(:name) %></td>
+  </tr>
+  
+  <tr>
+    <th>Card Status</th>
+    <td><%= f.select(:status,Card.statuses.keys ) %></td>
+  </tr> 
+  <tr>
+    <th>Deadline</th>
+    <td><%= f.datetime_select(:deadline)%></td>
+    
+  </tr> 
+
+  <tr>
+    <th>Add Tags</th>
+    <td><%= f.text_area(:tag_list) %></td>
+  </tr>
+
+</table>

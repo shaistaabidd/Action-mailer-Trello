@@ -1,0 +1,32 @@
+<h1>Filtered Results : </h1>
+<% if @searched_tag.empty? %>
+  <%= "No Results Found!!!" %>
+<% else %>
+   
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Assigned to</th>
+        <th scope = "col">Task</th>
+        <th scope = "col">Status</th>
+        <th scope = "col">Deadline</th>
+        <th scope = "col">Tag List</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @searched_tag.each do |task| %>
+        <tr>
+          <td><%= task.username %></td>
+          <td><%= task.name %></td>
+          <td><%= task.status %></td>
+          <td><%= task.deadline %></td>
+          <td><%= task.tag_list %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+<% end %>
+
