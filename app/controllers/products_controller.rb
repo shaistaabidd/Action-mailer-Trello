@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
   def create
     @product=Product.new(product_params)
     if @product.save
+      stripe_product=Stripe::Product.create({name: @product.name})
+      @product.update(stripe_product_id: stripe_product.id)
       flash[:notice]="Product Saved Successfully!!!"
       redirect_to product_path(@product)
     else
