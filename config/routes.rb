@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'billing_portal', to: 'billing_portal#create', as: 'billing_portal'
 
   resources :tasks
+  resources :subscriptions
   resources :products
   resources :prices ,:except => [:create]
   post ':id/prices', to: 'prices#create', as: 'price_create'
