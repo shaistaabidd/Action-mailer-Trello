@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'price', to: 'price#index', as: 'price_index'
   post 'checkout', to: 'checkout#create', as: 'checkout'
   post 'billing_portal', to: 'billing_portal#create', as: 'billing_portal'
-
+  get 'success/index', to: 'success#index', as: 'success'
   resources :tasks
   resources :subscriptions
   resources :products
