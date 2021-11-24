@@ -1,0 +1,20 @@
+
+<article>
+  
+  <%@prices.each do |price|%>
+    <label class="name">
+        <span><%=price.product.name%></span>
+    </label>
+    <label class="amount">
+        <span><%=price.unit_amount%></span>
+    </label>
+    <label class="currency">
+        <span><%=price.currency%></span>
+    </label>
+    <label class="currency">
+        <span><%=price.recurring_interval%></span>
+    </label>
+    <%= link_to "Subscribe",subscription_path(price) , class:"nav-link" %>
+  <%end%>
+</article>
+

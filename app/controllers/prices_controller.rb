@@ -3,6 +3,9 @@ class PricesController < ApplicationController
     @price = Price.new
 
   end
+  def index
+    @prices=Price.all
+  end
 
   def create
     @price=Price.new(price_params)
