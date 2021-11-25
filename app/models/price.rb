@@ -6,6 +6,8 @@ class Price < ApplicationRecord
          currency: 'usd',
          recurring: {interval: self.recurring_interval},
          product: self.product.stripe_product_id,
+         lookup_key: self.product.name
+
    })
    update(stripe_product_id: self.product.stripe_product_id, stripe_price_id: price.id)
    end
