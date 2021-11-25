@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+  <script src="https://js.stripe.com/v3/"></script>
+  
+  </head>
+  <body>
+    <div class = "Payment new">
+      <h1> Stripe Payment </h1>
+      
+      <%=form_for(@payment) do |f| %>
+        Name:
+        <%=f.text_field(:name)%>
+        <br / ><br / >
+        Email:
+        <%=f.text_field(:email)%>
+        <br / ><br / >
+        Country:
+        <%=f.text_field(:country)%>
+        <br / ><br / >
+        Card:
+        <div id="card-element">
+        <!-- Elements will create form elements here -->
+        </div>
+        <div id="card-errors", role="alert">
+        <!-- Elements will create form elements here -->
+        </div>
+        <br / ><br / >
+        <div>
+          <%=f.submit("Confirm")%>
+        </div>
+        
+      <%end%>
+    </div>
+    
+    <script type="text/javascript">
+
+    const options = {
+      clientSecret: "pi_3Jzgv9Gx183h7tz10SRviCyY_secret_hhyoewmmiLQsbSUp2AMiEsu9k"
+    };
+      var stripe=Stripe('pk_test_51Jw29PGx183h7tz1vCKbiozJIc5B8Zjx1aFAKed2v1Kb25Vshxt4PIWXHHLlhCL7d6vkVL60i1Xbuv5ncGbNoXaK00vBB66Zf7');
+      var elements=stripe.elements(options);
+      var style = {
+      base: {
+        color: "#32325d",
+      }
+    };
+
+    var cardNumberElement = document.getElementById("card-element");
+    const paymentElement = elements.create('payment');
+    paymentElement.mount(cardNumberElement);
+    </script>
+  </body>
+  
+</html>
