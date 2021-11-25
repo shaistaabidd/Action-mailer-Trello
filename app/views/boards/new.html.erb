@@ -1,0 +1,15 @@
+<div class = "board new">
+  <h1> Add new Board </h1>
+  
+  <%= form_for(@board, :url => boards_path, :method => 'post') do |f| %>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class = "form-buttons">
+      <%= f.submit("Create Board") %>
+    </div>
+
+  <%end%>
+  
+  <%= link_to 'Back', boards_path %>
+
+</div>

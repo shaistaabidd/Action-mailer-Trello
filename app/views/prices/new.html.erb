@@ -1,0 +1,4 @@
+<%=form_for(@price,:url => price_create_path(:id=>params[:id]) ,:method=> 'post') do |f|%>
+  <%= render(:partial => 'form', :locals => {:f=> f}) %>
+  <%=f.submit("Create Price")%>
+<%end%>
