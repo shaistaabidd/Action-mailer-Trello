@@ -20,16 +20,16 @@
         <div id="card-element">
         <!-- Elements will create form elements here -->
         </div>
+        <div id="card-errors", role="alert">
+        <!-- Elements will create form elements here -->
+        </div>
         <br / ><br / >
         Postal Code:
         <div id="postal-code">
           <%=f.text_field(:country)%>
         <!-- Elements will create form elements here -->
         </div>
-        <div id="card-errors", role="alert">
-        <!-- Elements will create form elements here -->
-        </div>
-        <br / ><br / >
+        
         <div>
           <%=f.submit("Confirm")%>
         </div>
@@ -50,16 +50,28 @@
       }
     };
 
-    var cardNumberElement = document.getElementById("card-element");
+    /*var cardNumberElement = document.getElementById("card-element");
     var tempPostalCode=document.getElementById("postal-code");
-    const paymentElement = elements.create('payment');
-    const postalCode=elements.create('postalCode')
-    paymentElement.mount(cardNumberElement);  /* we can also write "#card-element" instead of cardNumberElement.. because card-element is in form <div id="card-element">
+    const paymentElement = elements.create('payment'); 
+    const postalCode=elements.create('postalCode');
+    paymentElement.mount("#card-element");*/  /* we can also write "#card-element" instead of cardNumberElement.. because card-element is in form <div id="card-element">
         </div>... payment intent must be created before creating payment element like elements.create('payment').. and pass payment intent
         to clientsecret like->.. const options = {
       clientSecret: "pi_3Jzgv9Gx183h7tz10SRviCyY_secret_hhyoewmmiLQsbSUp2AMiEsu9k"
     }; */ 
-    postalCode.mount(tempPostalCode)
+    /*postalCode.mount(tempPostalCode)*/
+    var cardElement=elements.create('card');
+    cardElement.mount('#card-element');
+
+    cardElement.addEventListener('change', ({error})=>{
+    const displayError = document.getElementById('card-errors');
+      if (error) {
+        displayError.textContent = error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
     </script>
   </body>
   
