@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :tasks
   resources :subscriptions
   resources :products
-  resources :payments,:except => [:create, :new]
+  resources :payments,:except => [ :new]
   get ':id/payments', to: 'payments#new', as: 'payment_new'
-  post ':id/payments', to: 'payments#create', as: 'payment_create'
+  #post ':id/payments', to: 'payments#create', as: 'payment_create'
   resources :prices ,:except => [:create]
   post ':id/prices', to: 'prices#create', as: 'price_create'
   get 'admin/reset_password/:id', to: 'admin#reset_password', as: 'admin_reset_password'
