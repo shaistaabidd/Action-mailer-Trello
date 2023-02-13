@@ -17,7 +17,7 @@ services:
       - shared_data:/var/shared/redis
   db:
     image: postgres:12.5-alpine
-    container_name: db
+    container_name: db-data
     volumes:
       - db_data:/var/lib/postgresql/data
       - shared_data:/var/shared
@@ -25,8 +25,11 @@ services:
       - development
       - test
     environment:
-      POSTGRES_USER: shaista
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      # POSTGRES_DB: trello_development
+      # POSTGRES_HOST: db
+      # POSTGRES_PORT: 5432
     ports:
       - 5099:5432
   trello_app:
@@ -54,4 +57,19 @@ services:
     depends_on:
       - db
       - redis
+
+  sidekiq:
+    depends_on:
+      - 'db'
+      - 'redis'
+      - 'trello_app'
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bundle exec sidekiq
+    volumes:
+      - '.:/var/app'
+      - '/var/app/tmp' # don't mount tmp directory
+    environment:
+      - REDIS_URL=redis://redis:6379/1
   
