@@ -1,0 +1,14 @@
+<%= error_messages_for(f.object) %>
+
+<table summary = "Board for fields">
+  
+  <tr>
+    <th> Board Name </th>
+    <td> <%= f.text_area(:name)%> </td>
+  </tr> 
+  
+  <tr>
+    <%= f.number_field :user_id, id: :board_user_id, value: current_user.id, type: :hidden %>
+  </tr>      
+
+</table>

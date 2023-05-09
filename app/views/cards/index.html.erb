@@ -1,0 +1,46 @@
+<h1>List of tasks assigned by me : </h1>
+
+<% if @tasks.empty? %>
+  <%= "No Task is Assigned Yet!!!" %>
+<% else %>
+   
+  <table class = "table table-secondary">
+    
+    <thead>
+      <tr>
+        <th scope = "col">Assigned to</th>
+        <th scope = "col">Created by</th>
+        <th scope = "col">Task</th>
+        <th scope = "col">Show</th>
+        <th scope = "col">Edit</th>
+        <th scope = "col">Destroy</th>
+        
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.username %></td>
+          <td><%= task.list.board.user.username %></td>
+          <td>
+            <%= task.name %>
+            <% if not task.tag_list.empty? %>    
+              <br />
+              Tags: <%= raw task.tag_list.map {|t|  link_to t, filter_board_list_card_path(task.list.board_id, task.list_id, t)}.join(', ') %>
+            <%end%>
+          </td>
+          <td><%= link_to 'Show', board_list_card_path(task.list.board_id, task.list_id, task) %></td>
+          <td><%= link_to 'Edit', edit_board_list_card_path(task.list.board_id, task.list_id, task) %></td>
+          <td><%= link_to 'Destroy', board_list_card_path(task.list.board_id, task.list_id, task), method: :delete,data: { confirm: "Are you sure?" } %></td>     
+        </tr>  
+      <% end %>
+    </tbody>
+  
+  </table>
+<% end %>
+
+
+
+<%= link_to "Add Card",new_board_list_card_path , class:"nav-link" %>
+<%= link_to "List of Assigned to me Tasks",home_index_path , class:"nav-link" %>

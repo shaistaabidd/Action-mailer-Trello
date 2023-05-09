@@ -1,0 +1,30 @@
+<h1>All Boards</h1>
+
+<table class = "table">
+  
+  <thead>    
+    <tr>
+      <th scope = "col"> Board Name </th>
+      <th scope = "col"> Show </th>
+      <th scope = "col"> Edit </th>
+      <th scope = "col"> Destroy </th>
+    
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= board.name %></td>
+        <td><%= link_to 'Show Board Lists', board_lists_path(board) %></td>
+        <td><%= link_to 'Edit', edit_board_path(board) %></td>        
+        <td><%= link_to 'Destroy', delete_board_path(board) %></td>        
+      </tr>
+    <% end %>
+    
+    <tr> 
+      <%= link_to "Add Board",new_board_path , class:"nav-link" %>      
+    </tr>
+    
+  </tbody>
+</table>
