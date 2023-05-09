@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_115555) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.boolean "deactivated"
+    t.string "plan"
     t.string "subscription_status", default: "incomplete"
     t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
